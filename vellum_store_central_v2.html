@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VELLUM STORE — Loja</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#050505;color:#fff;font-family:Inter,Arial,sans-serif}
+a{text-decoration:none;color:inherit}button{font:inherit}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 15% 10%,#ff2d5512,transparent 28%),radial-gradient(circle at 90% 40%,#00f2ea0d,transparent 30%);z-index:-1}
+.nav{position:sticky;top:0;z-index:50;border-bottom:1px solid #1b1b1b;background:#070707dd;backdrop-filter:blur(18px)}
+.navin{max-width:1220px;margin:auto;padding:16px 5%;display:flex;align-items:center;gap:30px}
+.logo{font-size:22px;font-weight:950;letter-spacing:4px}.logo i{font-style:normal;color:#ff2d55}
+.links{display:flex;gap:24px;margin-left:auto;color:#8d8d8d;font-size:12px;font-weight:700}.links a:hover{color:#fff}
+.cart{border:1px solid #292929;border-radius:10px;padding:10px 13px;font-size:11px;font-weight:900}
+.hero{max-width:1220px;margin:auto;padding:75px 5% 55px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.badge{display:inline-block;border:1px solid #292929;background:#0a0a0a;border-radius:99px;padding:9px 13px;color:#aaa;font-size:10px;letter-spacing:2px}
+h1{font-size:clamp(48px,7vw,92px);line-height:.9;letter-spacing:-5px;margin:22px 0 18px}.grad{background:linear-gradient(90deg,#fff 10%,#ff2d55 52%,#00f2ea);-webkit-background-clip:text;color:transparent}
+.hero p{max-width:590px;color:#888;line-height:1.7;font-size:14px}.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}.btn{padding:14px 19px;border-radius:10px;font-size:11px;font-weight:900;border:1px solid #292929}.primary{background:#fff;color:#050505}.secondary{background:#0b0b0b;color:#fff}
+.showcase{height:390px;border:1px solid #242424;border-radius:25px;background:linear-gradient(135deg,#141414,#080808);position:relative;overflow:hidden;display:grid;place-items:center}
+.showcase:before{content:"V";font-size:290px;font-weight:950;color:#101010;position:absolute;line-height:1}.showcase:after{content:"VELLUM / 001";position:absolute;bottom:22px;left:25px;color:#555;font-size:10px;letter-spacing:3px}
+.showcase span{z-index:2;border:1px solid #333;background:#080808cc;padding:12px 16px;border-radius:10px;color:#bbb;font-size:10px;letter-spacing:2px}
+.section{max-width:1220px;margin:auto;padding:48px 5%}.sectionhead{display:flex;justify-content:space-between;align-items:end;margin-bottom:22px}.sectionhead h2{font-size:29px;margin:0}.sectionhead p{color:#666;font-size:11px;margin:0}
+.filters{display:flex;gap:8px;overflow:auto;margin-bottom:22px}.filter{white-space:nowrap;border:1px solid #252525;background:#0a0a0a;color:#999;padding:10px 14px;border-radius:9px;font-size:11px;cursor:pointer}.filter.active,.filter:hover{background:#fff;color:#050505}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.card{background:#0a0a0a;border:1px solid #1c1c1c;border-radius:18px;overflow:hidden;transition:.3s}.card:hover{transform:translateY(-5px);border-color:#444;box-shadow:0 18px 50px #000}
+.pic{height:245px;position:relative;display:grid;place-items:center;background:linear-gradient(135deg,#151515,#090909);color:#303030;font-size:58px;font-weight:950}
+.tag{position:absolute;top:13px;left:13px;background:#ff2d55;color:#fff;padding:6px 9px;border-radius:7px;font-size:9px;font-weight:900}.info{padding:18px}.cat{color:#666;font-size:9px;letter-spacing:2px}.info h3{margin:7px 0;font-size:17px}.info p{color:#777;font-size:12px;line-height:1.5;min-height:36px}.buyrow{display:flex;align-items:center;justify-content:space-between;margin-top:16px}.price{font-size:19px;font-weight:950}.old{text-decoration:line-through;color:#555;font-size:10px;margin-right:5px}.buy{background:#fff;color:#050505;border:0;border-radius:9px;padding:10px 13px;font-size:10px;font-weight:950;cursor:pointer}
+.offer{border:1px solid #252525;border-radius:20px;padding:28px;background:linear-gradient(110deg,#ff2d5512,#00f2ea08);display:flex;justify-content:space-between;align-items:center;gap:25px}.offer h2{margin:0 0 7px}.offer p{margin:0;color:#888;font-size:13px}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.feature{border:1px solid #1d1d1d;background:#0a0a0a;border-radius:16px;padding:22px}.feature b{font-size:14px}.feature p{color:#777;font-size:12px;line-height:1.6}
+footer{border-top:1px solid #191919;margin-top:30px;padding:35px 5%;text-align:center;color:#555;font-size:11px}
+@media(max-width:800px){.hero{grid-template-columns:1fr;padding-top:50px}.showcase{height:280px}.links{display:none}.products{grid-template-columns:1fr 1fr}.features{grid-template-columns:1fr}.offer{display:block}.offer .btn{display:inline-block;margin-top:18px}}
+@media(max-width:500px){.products{grid-template-columns:1fr}.navin{padding:15px 5%}.hero{padding-bottom:30px}h1{letter-spacing:-3px}}
+
+.social-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.social-card{min-height:150px;border:1px solid #242424;border-radius:17px;background:#0a0a0a;padding:22px;display:flex;flex-direction:column;justify-content:space-between;transition:.25s}
+.social-card:hover{transform:translateY(-4px);border-color:#555}
+.social-card strong{font-size:18px}.social-card span{color:#777;font-size:12px;line-height:1.5}.social-card b{font-size:10px;letter-spacing:1px}
+.whatsapp:hover{box-shadow:0 15px 40px #25d36612}.tiktok:hover{box-shadow:0 15px 40px #00f2ea12}.instagram:hover{box-shadow:0 15px 40px #ff2d5512}
+@media(max-width:800px){.social-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="navin">
+<div class="logo">VELLUM<i>.</i></div>
+<div class="links"><a href="#inicio">Início</a><a href="#loja">Loja</a><a href="#ofertas">Ofertas</a><a href="#sobre">Sobre</a><a href="#social">Redes</a></div>
+<a class="cart" href="#loja">CARRINHO (0)</a>
+</div></nav>
+
+<main>
+<section class="hero" id="inicio">
+<div>
+<div class="badge">VELLUM STORE • EDIÇÕES DIGITAIS</div>
+<h1>SEU CONTEÚDO.<br><span class="grad">OUTRO NÍVEL.</span></h1>
+<p>Encontre edições, artes e serviços digitais da VELLUM em um só lugar. Estamos começando com preços baixos para você experimentar nosso trabalho.</p>
+<div class="hero-actions"><a class="btn primary" href="#loja">EXPLORAR LOJA →</a><a class="btn secondary" href="#ofertas">VER OFERTAS</a></div>
+</div>
+<div class="showcase"><span>COLEÇÃO DE LANÇAMENTO</span></div>
+</section>
+
+<section class="section" id="loja">
+<div class="sectionhead"><div><h2>Explore a loja</h2><p>ESCOLHA O QUE VOCÊ PRECISA</p></div><p>PREÇOS DE LANÇAMENTO</p></div>
+<div class="filters"><button class="filter active">Todos</button><button class="filter">Edições</button><button class="filter">Capas</button><button class="filter">Thumbnails</button><button class="filter">Logos</button><button class="filter">Artes</button></div>
+<div class="products">
+<article class="card"><div class="pic"><span class="tag">LANÇAMENTO</span>ED</div><div class="info"><div class="cat">EDIÇÃO</div><h3>Edição Básica</h3><p>Edição limpa e caprichada para vídeos e conteúdos.</p><div class="buyrow"><span class="price">R$ 7,00</span><button class="buy" onclick="comprar('Edição Básica')">COMPRAR</button></div></div></article>
+<article class="card"><div class="pic"><span class="tag">POPULAR</span>EP</div><div class="info"><div class="cat">EDIÇÃO</div><h3>Edição Premium</h3><p>Mais efeitos, detalhes e acabamento para seu conteúdo.</p><div class="buyrow"><span class="price">R$ 12,00</span><button class="buy" onclick="comprar('Edição Premium')">COMPRAR</button></div></div></article>
+<article class="card"><div class="pic">TH</div><div class="info"><div class="cat">THUMBNAIL</div><h3>Thumbnail Personalizada</h3><p>Uma capa feita para chamar atenção no seu conteúdo.</p><div class="buyrow"><span class="price">R$ 9,00</span><button class="buy" onclick="comprar('Thumbnail Personalizada')">COMPRAR</button></div></div></article>
+<article class="card"><div class="pic">CV</div><div class="info"><div class="cat">CAPA</div><h3>Capa para Perfil</h3><p>Arte personalizada para perfil, comunidade ou canal.</p><div class="buyrow"><span class="price">R$ 7,00</span><button class="buy" onclick="comprar('Capa para Perfil')">COMPRAR</button></div></div></article>
+<article class="card"><div class="pic"><span class="tag">OFERTA</span>LG</div><div class="info"><div class="cat">LOGO</div><h3>Logo Simples</h3><p>Identidade visual simples para começar seu projeto.</p><div class="buyrow"><span class="price">R$ 15,00</span><button class="buy" onclick="comprar('Logo Simples')">COMPRAR</button></div></div></article>
+<article class="card"><div class="pic">VC</div><div class="info"><div class="cat">PACOTE</div><h3>Combo VELLUM</h3><p>Pacote econômico com edição, capa e thumbnail.</p><div class="buyrow"><span class="price"><span class="old">R$ 35</span>R$ 25</span><button class="buy" onclick="comprar('Combo VELLUM')">COMPRAR</button></div></div></article>
+</div>
+</section>
+
+<section class="section" id="ofertas"><div class="offer"><div><h2>Preços de lançamento</h2><p>Estamos começando. Por isso, mantivemos uma entrada acessível, mas também criamos opções mais completas para quem quer um resultado premium.</p></div><a class="btn primary" href="#loja">VER OFERTAS →</a></div></section>
+
+<section class="section" id="sobre"><div class="sectionhead"><h2>Por que VELLUM?</h2></div><div class="features">
+<div class="feature"><b>Preço acessível</b><p>Valores baixos nessa fase inicial para testar a loja e conquistar os primeiros clientes.</p></div>
+<div class="feature"><b>Feito sob medida</b><p>Você pode explicar exatamente o que quer e combinar os detalhes da sua edição.</p></div>
+<div class="feature"><b>Atendimento direto</b><p>Depois de escolher o produto, você entra em contato para confirmar pedido e pagamento.</p></div>
+</div></section>
+
+<section class="section" id="social">
+<div class="sectionhead"><div><h2>VELLUM nas redes</h2><p>ACOMPANHE A LOJA E FALE COM A GENTE</p></div></div>
+<div class="social-grid">
+<a class="social-card whatsapp" href="https://wa.me/" target="_blank"><strong>WhatsApp</strong><span>Pedidos, dúvidas e atendimento</span><b>ABRIR →</b></a>
+<a class="social-card tiktok" href="https://www.tiktok.com/" target="_blank"><strong>TikTok</strong><span>Veja nossas edições e novidades</span><b>ABRIR →</b></a>
+<a class="social-card instagram" href="https://www.instagram.com/" target="_blank"><strong>Instagram</strong><span>Artes, portfólio e novidades</span><b>ABRIR →</b></a>
+</div>
+</section>
+</main>
+<footer>VELLUM STORE • 2026 • CRIANDO, EDITANDO E EVOLUINDO.</footer>
+
+<script>
+function comprar(produto){
+  const mensagem=encodeURIComponent("Olá! Quero comprar: "+produto+" na VELLUM STORE.");
+  alert("Pedido selecionado: "+produto+"\\n\\nAgora conecte este botão ao seu WhatsApp ou Pix.");
+  // Para ativar WhatsApp, substitua a linha acima por:
+  // window.open("https://wa.me/SEUNUMERO?text="+mensagem,"_blank");
+}
+document.querySelectorAll(".filter").forEach(btn=>{
+ btn.onclick=()=>{
+  document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));
+  btn.classList.add("active");
+ };
+});
+</script>
+</body>
+</html>
